@@ -24,4 +24,4 @@ def products(request):
         'categories' : ProductCategory.objects.all()
     }
 
-    return render(request, 'products/products.html', context=context)
+    return render(request,'products/products.html', context=context)
