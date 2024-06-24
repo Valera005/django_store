@@ -3,7 +3,6 @@ from django.db.models import QuerySet
 
 from users.models import User
 
-
 # Create your models here.
 # Здесь создаются таблицы для баз данных
 
@@ -13,13 +12,13 @@ class ProductCategory(models.Model):
 
     objects: QuerySet
 
-
     class Meta:
         verbose_name = "category"
         verbose_name_plural = "categories"
 
     def __str__(self):
         return f"{self.name}"
+
 
 class Product(models.Model):
     name = models.CharField(max_length=256)
@@ -46,6 +45,7 @@ class BasketQuerySet(models.QuerySet):
     def total_quantity(self):
         return sum(basket.quantity for basket in self)
 
+
 class Basket(models.Model):
     user = models.ForeignKey(to=User, on_delete=models.CASCADE)
     product = models.ForeignKey(to=Product, on_delete=models.CASCADE)
@@ -53,9 +53,9 @@ class Basket(models.Model):
     created_timestamp = models.DateTimeField(auto_now_add=True)
 
     objects: QuerySet = BasketQuerySet.as_manager()
+
     def __str__(self):
         return f"Корзина для {self.user.username}|Продукт: {self.product.name}"
 
     def sum(self):
         return self.product.price * self.quantity
-

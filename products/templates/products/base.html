@@ -47,7 +47,9 @@
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
                         <li>
-                            <a class="dropdown-item" href="{% url 'users:profile' %}">Профиль</a>
+                            <a class="dropdown-item" href="{% if user.id %} {% url 'users:profile' user.id %}
+                             {% else %} {% url 'users:login' %}
+                            {% endif %} ">Профиль</a>
                         </li>
                         <li><a class="dropdown-item" href="orders/orders.html">Заказы</a></li>
                         <li><a class="dropdown-item" href="#">Админ-панель</a></li>
@@ -55,7 +57,9 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li>
-                            <a class="dropdown-item" href="#">
+                            <a class="dropdown-item" href="{% if user.id %} {% url 'users:logout' %}
+                             {% else %} {% url 'users:login' %}
+                            {% endif %}">
                                 Выйти
                             </a>
                         </li>

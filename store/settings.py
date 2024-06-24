@@ -27,6 +27,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
+DOMAIN_NAME = "http://localhost:8000"
 
 # Application definition
 
@@ -65,6 +66,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'products.context_processors.baskets',
             ],
         },
     },
@@ -136,3 +138,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Users
 AUTH_USER_MODEL = 'users.User'
 LOGIN_URL = 'users/login'
+
+# Sending Emails
+
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_HOST_USER = "djangoteststore@gmail.com"
+EMAIL_HOST_PASSWORD = "eugsiyzdjqocicuy"
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'

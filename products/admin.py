@@ -1,11 +1,12 @@
 from django.contrib import admin
 
+from products.models import Basket, Product, ProductCategory
+
 # Register your models here.
 
 # Здесь мы регистрируем таблицы нашей бд чтобы
 # они отображались в админке
 
-from products.models import ProductCategory, Product, Basket
 
 admin.site.register(ProductCategory)
 
@@ -19,10 +20,8 @@ class ProductAdmin(admin.ModelAdmin):
     ordering = ("name", "price", 'quantity', "-name", "-price", '-quantity')
 
 
-
 class BasketAdmin(admin.TabularInline):
     model = Basket
     fields = ('product', 'quantity', 'created_timestamp')
     readonly_fields = ("created_timestamp",)
     extra = 0
-
