@@ -1,4 +1,5 @@
 from django.contrib.auth.decorators import login_required
+from django.core.cache import cache
 from django.core.handlers.wsgi import WSGIRequest
 from django.core.paginator import Paginator
 from django.http import HttpResponseRedirect
@@ -28,7 +29,14 @@ class ProductListView(TitleMixin, ListView):
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super(ProductListView, self).get_context_data()
-        context['categories'] = ProductCategory.objects.all()
+
+        categories = cache.get("categories")
+
+        if not categories:
+            categories = ProductCategory.objects.all()
+            cache.set("categories", categories, 30)
+
+        context['categories'] = categories
         return context
 
     def get_queryset(self):

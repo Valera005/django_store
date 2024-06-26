@@ -3,7 +3,7 @@ exclude =
     migrations
 
 ignore =
-    F401,isort
+    F401,
     E251
 
 max-line-length = 130
