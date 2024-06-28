@@ -51,7 +51,7 @@
                              {% else %} {% url 'users:login' %}
                             {% endif %} ">Профиль</a>
                         </li>
-                        <li><a class="dropdown-item" href="orders/orders.html">Заказы</a></li>
+                        <li><a class="dropdown-item" href="{% url 'orders:orders_list' %}">Заказы</a></li>
                         <li><a class="dropdown-item" href="#">Админ-панель</a></li>
                         <li>
                             <hr class="dropdown-divider">

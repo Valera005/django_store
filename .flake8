@@ -4,6 +4,7 @@ exclude =
 
 ignore =
     F401,
-    E251
+    E251,
+    E402
 
 max-line-length = 130

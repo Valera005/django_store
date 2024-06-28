@@ -10,8 +10,6 @@ from store import settings
 # Create your models here.
 
 
-
-
 class User(AbstractUser):
     image = models.ImageField(upload_to='users_image', null=True, blank=True)
     is_verified_email = models.BooleanField(default=False)

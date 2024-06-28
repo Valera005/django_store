@@ -34,11 +34,9 @@ class ProductsListViewTestCase(TestCase):
     def setUp(self) -> None:
         self.products = Product.objects.all()
 
-
     def test_list(self):
         path = reverse('products:index')
         response = self.client.get(path)
-
 
         self.assertEqual(HTTPStatus.OK, response.status_code)
         # self.assertTemplateUsed(response, "products/products.html")
@@ -46,12 +44,10 @@ class ProductsListViewTestCase(TestCase):
         self.assertEqual(list(response.context_data['object_list']), list(self.products[:3]))
         print("ok")
 
-
     def test_list_with_category(self):
         category = ProductCategory.objects.first()
         path = reverse('products:category', kwargs={"category_id": 1})
         response = self.client.get(path)
-
 
         self.assertEqual(HTTPStatus.OK, response.status_code)
         # self.assertTemplateUsed("products/products.html", response)
@@ -59,5 +55,3 @@ class ProductsListViewTestCase(TestCase):
             list(response.context_data['object_list']),
             list(self.products.filter(category_id=category.id))
         )
-
-

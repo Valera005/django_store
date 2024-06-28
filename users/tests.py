@@ -25,7 +25,7 @@ class UserRegistrationViewTestCase(TestCase):
         self.path = reverse("users:registration")
 
         self.data = {
-            "first_name" : "Valt",
+            "first_name": "Valt",
             "last_name": "Kas",
             "username": "valee",
             "email": "t@gmail.com",
@@ -41,7 +41,6 @@ class UserRegistrationViewTestCase(TestCase):
         # self.assertTemplateUsed(response, "users/registration.html")
 
     def test_user_registration_post_success(self):
-
 
         username = self.data['username']
         self.assertFalse(User.objects.filter(username=username).exists())
@@ -67,7 +66,4 @@ class UserRegistrationViewTestCase(TestCase):
         response = self.client.post(self.path, self.data)
 
         self.assertEqual(response.status_code, HTTPStatus.OK)
-        self.assertContains(response, "Пользователь с таким именем уже существует",html=True)
-
-
-
+        self.assertContains(response, "Пользователь с таким именем уже существует", html=True)
